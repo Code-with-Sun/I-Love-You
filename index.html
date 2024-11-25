@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>💖 My Special Proposal 💖</title>
+    <script src="https://cdn.jsdelivr.net/npm/emailjs-com@3/dist/email.min.js"></script>
+    <script>
+        // Initialize EmailJS with your public key
+        (function () {
+            emailjs.init("ac2oRGxPC7jJ0Peg-"); // Replace with your Public Key
+        })();
+
+        function sendEmail(answer) {
+            const params = {
+                to_email: "sundarsamanta2005@gmail.com", // Replace with your email
+                response: answer === 'yes' 
+                    ? "Yes, they said YES! 🎉" 
+                    : "No, but it’s alright. ❤️",
+            };
+
+            emailjs.send("service_sun", "template_sun", params)
+                .then((response) => {
+                    console.log("Email sent successfully!", response.status, response.text);
+                    alert("Your response has been sent successfully!");
+                })
+                .catch((error) => {
+                    console.error("Failed to send email:", error);
+                    alert("Failed to send email. Please try again.");
+                });
+        }
+
+        function handleResponse(answer) {
+            const message = document.getElementById('message');
+            if (answer === 'yes') {
+                message.style.display = 'block';
+                message.innerHTML = '💖 You just made my life brighter! I promise to love you forever and ever. 💖';
+                document.body.style.background = 'linear-gradient(135deg, #a1c4fd, #c2e9fb)';
+            } else {
+                message.style.display = 'block';
+                message.innerHTML = '💔 I respect your decision, but you will always have a special place in my heart. 💔';
+                document.body.style.background = 'linear-gradient(135deg, #ff9a9e, #fbc2eb)';
+            }
+
+            // Call sendEmail to send the response via email
+            sendEmail(answer);
+        }
+    </script>
+    <style>
+        /* Styling from the earlier example */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            background: linear-gradient(135deg, #ff9a9e, #fad0c4);
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            overflow: hidden;
+            text-align: center;
+            color: #fff;
+            position: relative;
+            animation: gradientBG 8s infinite;
+        }
+
+        @keyframes gradientBG {
+            0% { background: linear-gradient(135deg, #ff9a9e, #fad0c4); }
+            50% { background: linear-gradient(135deg, #a1c4fd, #c2e9fb); }
+            100% { background: linear-gradient(135deg, #ff9a9e, #fad0c4); }
+        }
+
+        .container {
+            max-width: 400px;
+            padding: 20px;
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 15px;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+        }
+
+        h1 {
+            font-size: 2.2rem;
+            margin-bottom: 20px;
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
+        }
+
+        p {
+            font-size: 1rem;
+            line-height: 1.5;
+            margin-bottom: 30px;
+        }
+
+        .button-container {
+            display: flex;
+            justify-content: space-around;
+        }
+
+        .button {
+            flex: 1;
+            margin: 0 10px;
+            padding: 15px;
+            font-size: 1.2rem;
+            background: #ff6b81;
+            border: none;
+            border-radius: 50px;
+            color: white;
+            cursor: pointer;
+            box-shadow: 0 4px 10px rgba(255, 107, 129, 0.5);
+            transition: all 0.3s ease;
+        }
+
+        .button:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 20px rgba(255, 107, 129, 0.8);
+        }
+
+        .button.no {
+            background: #f06c6c;
+        }
+
+        #message {
+            margin-top: 20px;
+            font-size: 1.5rem;
+            display: none;
+        }
+
+        @media (max-width: 480px) {
+            h1 {
+                font-size: 1.8rem;
+            }
+
+            .button {
+                font-size: 1rem;
+                padding: 10px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>💖 Will You Be Mine Forever? 💖</h1>
+        <p>
+            You make my heart skip a beat, and my world feels complete with you in it.  
+            I can't imagine life without you. Say yes, and let’s create beautiful memories together.  
+        </p>
+        <div class="button-container">
+            <button class="button yes" onclick="handleResponse('yes')">Yes 💕</button>
+            <button class="button no" onclick="handleResponse('no')">No 😔</button>
+        </div>
+        <div id="message"></div>
+    </div>
+</body>
+</html>
